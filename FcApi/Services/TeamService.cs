@@ -5,20 +5,57 @@ using Microsoft.AspNetCore.Builder;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using FcApi.ViewModels;
+using System.Linq;
 
 namespace FcApi.Services
 {
     public class TeamService : Interfaces.ITeamService
     {
+        //var urlTeamInfo = new Uri("http://databaseproject.orgfree.com/fc/teamInfo.php");
       
         public TeamService()
         {
 
         }
 
-        public async Task<IEnumerable<ViewModels.Team>> GetTeamsAsync()
+        public async Task<IEnumerable<TeamLocation>> GetTeamLocations(int teamId = 0)
         {
-            //const string url = "http://databaseproject.orgfree.com/fc/teamInfo.php";
+            var teamsLocations = await GetTeamsAsync();
+            if(!teamsLocations.Any())return new List<TeamLocation>();
+
+            var locations = new List<TeamLocation>();
+            if(teamId == 0){
+
+                foreach(var team in teamsLocations){
+
+                locations.Add(new TeamLocation{
+                    TeamId = Convert.ToInt32(team.TeamId),
+                    TeamName = team.TeamName,
+                    CityState = team.CityState,
+                    Latitude = team.Latitude,
+                    Longitude = team.Longitude
+                    });
+                }
+            }
+            else
+            {
+                var team = teamsLocations.FirstOrDefault(t => t.TeamId == teamId.ToString());
+                locations.Add(new TeamLocation{
+                    TeamId = Convert.ToInt32(team.TeamId),
+                    TeamName = team.TeamName,
+                    CityState = team.CityState,
+                    Latitude = team.Latitude,
+                    Longitude = team.Longitude
+                    });
+            }
+            
+            return locations;
+               
+        }
+        
+        public async Task<IEnumerable<Team>> GetTeamsAsync()
+        {
+            
             IEnumerable<Team> teamInfo;
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
@@ -37,8 +74,7 @@ namespace FcApi.Services
                 Console.WriteLine(e);
                 throw;
             }
-            
-            Console.Write(msg);
+
             return teamInfo;
 
         }
