@@ -37,29 +37,29 @@ namespace FcApi.Controllers
             return await _teamService.GetTeamsAsync();
         }
 
-        // GET: api/Team/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET: api/Team/5
+        //[HttpGet("{id}", Name = "Get")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
         
-        // POST: api/Team
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST: api/Team
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
         
-        // PUT: api/Team/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT: api/Team/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
         
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE: api/ApiWithActions/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
