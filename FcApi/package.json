@@ -1,0 +1,30 @@
+{
+  "name": "fcapi",
+  "version": "1.0.0",
+  "description": "fcos api",
+  "main": "app.js",
+  "dependencies": {
+    "bootstrap": "3.3.6",
+    "jquery": "2.2.0",
+    "jquery-validation": "1.14.0",
+    "jquery-validation-unobtrusive": "3.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomn321/Fc-Api.git"
+  },
+  "keywords": [
+    "npm",
+    "module"
+  ],
+  "author": "TN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomn321/Fc-Api/issues"
+  },
+  "homepage": "https://github.com/tomn321/Fc-Api#readme"
+}
