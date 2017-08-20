@@ -25,7 +25,7 @@ namespace FcApi.Controllers
         // GET: api/Team
         [HttpGet]
         [Route("TeamLocation/{teamId}")]
-        public async Task<IEnumerable<TeamLocation>> GetTeamLocations(int teamId)
+        public async Task<IEnumerable<TeamLocation>> GetTeamLocations([FromBody]int teamId)
         {
             return await _teamService.GetTeamLocations(teamId);
         }

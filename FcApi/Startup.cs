@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace FcApi
 {
@@ -31,6 +32,11 @@ namespace FcApi
             services.AddTransient<Services.Interfaces.ITeamService, Services.TeamService>();
             // Add framework services.
             services.AddMvc();
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Info { Title = "FC API", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,12 +55,16 @@ namespace FcApi
             }
 
             app.UseStaticFiles();
-
+            app.UseSwagger();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }
